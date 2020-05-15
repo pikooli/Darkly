@@ -1,0 +1,12 @@
+http://192.168.57.3/index.php?
+
+Find a faille in the social medial icon at the bottom of the website.
+
+You can make another website that look like this one and make the user log in.
+This would allow you to gain the password and username of the personnel.
+By giving the url of you social medial directely in the DOM , it way more easy to make a fake website
+
+Flag = b9e775a0291fed784a2d9680fcfad7edd6b8cdf87648da647aaf4bba288bcab3
+
+-------------------------- Countermeasure ----------------------------------------
+    - Don't keep redirect link in the DOM, make it so the server give the redirect link.

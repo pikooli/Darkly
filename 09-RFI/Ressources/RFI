@@ -1,0 +1,20 @@
+http://192.168.57.3/?page=media&src=nsa
+
+In this page we see a picture of a eagle, but this eagle come from a url that is not well formated.
+It a uri, that mean that it point to a location but the location may not be in the server.
+We can specific another location , or execute external script in the server
+
+exemple : we going to put this script 
+    <script>alert("hello")</script>
+
+we encode it in base64 and add it 
+
+http://192.168.57.3/index.php?page=media&src=data:text/html;base64,PHNjcmlwdD5hbGVydCgiaGVsbG8iKTwvc2NyaXB0Pg==
+
+THE FLAG IS : 928D819FC19405AE09921A2B71227BD9ABA106F9D2D37AC412E9E5A750F1506D
+
+-------------------------- Countermeasure ----------------------------------------
+
+    - Never use arbitrary input data in a literal file include request
+    - Use a filter to thoroughly scrub input parameters against possible file inclusions
+    - Build a dynamic whitelist (listing only good application or programme)

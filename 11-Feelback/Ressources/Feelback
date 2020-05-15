@@ -1,0 +1,11 @@
+http://192.168.57.3/index.php?page=feedback
+
+In the feelback page you can insert a script in the comment part. 
+This is another xss faile that should be fixed.
+Or anyone can execute a php script that could be dangerous.
+
+THE FLAG IS : 0FBB54BBF7D099713CA4BE297E1BC7DA0173D8B3C21C1811B916A3A86652724E
+
+-------------------------- Countermeasure ----------------------------------------
+    - You can htmlspecialchars() to transforme the special caractere that needed for scripting. Sanitization it
+    - You can block special caractere. 

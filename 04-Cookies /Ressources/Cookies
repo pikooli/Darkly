@@ -1,0 +1,28 @@
+http://192.168.57.3/
+
+Found a vunerability in the cookie 
+
+If you check the cookie, you find this : 
+"I_am_admin=68934a3e9455fa72420237eb05902327"
+
+It a key value , with the value that correcpond to "false" in md5 encoding 
+
+you just need to change the default value of I_am_admin stored in the cookie.
+by this :
+
+"I_am_admin=b326b5062b2f0e69046810717534cb09"
+it a "true" encoded in md5
+
+And you got the flag. 
+
+Good job! Flag :    df2eb4ba34ed059a1e3e89ff4dfc13445f104a1a52295214def1c4fb1693a5c3
+
+-------------------------- Countermeasure ----------------------------------------
+    
+    - Don't use cookie to store this type of information. Use session instand , session store the value in server side
+        and only give the session id in the cookie, so it harder to get information. 
+    - Check with another encrypted variable if the cookie is authenticity. 
+        exemple:
+             all cookie have the id of the user encrypted and you can check if it really admin with the id.
+             
+https://www.dcode.fr/md5-hash

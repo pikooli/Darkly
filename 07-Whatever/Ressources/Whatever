@@ -1,0 +1,23 @@
+http://192.168.57.3/whatever/
+
+By using bruteforce to know what part of the website you have access.
+I found a url that was interesting. http://192.168.57.3/whatever/
+
+This allow me to have access to the file "htpasswd" 
+
+    root:8621ffdbc5698829397d97767ac13db3
+
+This is a mdr5 encoding that give us "dragon"
+
+By going to the /admin and typing this user and password we have access to admin page.
+
+The flag is : d19b4823e0d5600ceed56d5e896ef328d7a2b9e7ac7e80f4fcdb9b10bcb3e7ff 
+                
+https://www.dcode.fr/md5-hash
+
+-------------------------- Countermeasure ----------------------------------------
+    - Don't give access to file with important information.
+    - Limit the access of the serveur to where it should work.
+    - Don't give the server root lvl and change the access to important file
+    - Move the file somewhere people can't find it 
+    - Configure your htaccess
