@@ -10,3 +10,4 @@ Some vulnerability present in this project:
 - Directory traversal attack
 - Rediction url.
 - Bad use of cookie
+- Check value in form 
