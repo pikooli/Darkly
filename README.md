@@ -9,3 +9,4 @@ Some vulnerability present in this project:
 - Password bruteforce.
 - Directory traversal attack
 - Rediction url.
+- Bad use of cookie
